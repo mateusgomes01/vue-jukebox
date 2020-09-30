@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Basic register form</title>
+		<link rel='stylesheet' type='text/css' href="style.css">
+		<meta charset="utf-8">
+	</head>
+    <body>	
+        <h1 style="text-align: center">Basic register form</h1>
+        <form>
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name"><br>
+            <label for="surname">Surname:</label><br>
+            <input type="text" id="surname" name="surname"><br>
+            <label for="email">Email:</label><br>
+            <input type="text" id="email" name="email"><br>
+            <label for="legalPerson">Legal person:</label><br>
+            <input type="text" id="legalPerson" name="legalPerson"><br>
+            <label for="document">CPF/CNPJ:</label><br> <!-- only show CNPJ if Legal person = true. \n
+            Use watch to show the desired field-->
+            <input type="text" id="document" name="document"><br>
+        </form>
+    </body>
+</html>
