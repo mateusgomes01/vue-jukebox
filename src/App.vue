@@ -17,12 +17,12 @@
 			</p>
 			<p>
 				<label for="legalPerson">Legal person? </label>
-				<input type="radio" id="yes" v-model="form.legalPerson" v-bind:value="true">
+				<input type="radio" id="yes" v-model="isLegal" v-bind:value="true">
 				<label for="yes">Yes</label>
-				<input type="radio" id="no" v-model="form.legalPerson" v-bind:value="false">
+				<input type="radio" id="no" v-model="isLegal" v-bind:value="false">
 				<label for="no">No</label><br>
 			</p>
-			<template v-if="legalPerson">
+			<template v-if="isLegal">
 				<p>
 					<label for="cnpj">CNPJ </label>
 					<input v-model="form.cnpj" placeholder="Your business CNPJ"><br>
@@ -37,13 +37,11 @@
 
 			<button @click.prevent="submit()">Save</button>
         </form>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <RegisterTable msg="This will be the register table"/>    
+    <RegisterTable msg="This will be the register table"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 import RegisterTable from './components/RegisterTable.vue'
 
 export default {
@@ -51,23 +49,24 @@ export default {
   data() {
     return {
 		form: {
-			name: 'Mateus Melo',
+			name: '',
 			surname: '',
 			email: '',
-			legalPerson: false,
+			isLegal: false,
 			cnpj: '',
 			cpf: '',
 		},
-		forms: [] // an array to store the forms
+		forms: [], // an array to store the forms
+		isLegal: false
     }
   },
   components: {
-    HelloWorld,
     RegisterTable
   },
   watch: {
     // whenever toggle changes, this function will run
-    'form.legalPerson'(val, oldVal) {
+    isLegal: function(val) {
+		console.log(val);
       if (val == true) {
         this.showCNPJ();
       } else {
@@ -77,12 +76,12 @@ export default {
   },
   methods: {
       showCNPJ() {
-        this.CNPJ = '...';
-        this.CNPJ = '12345678';
+        this.form.isLegal = this.isLegal;
+        this.form.cpf = '';
       },
       hideCNPJ() {
-        this.CNPJ = '...';
-        this.CNPJ = 'nullo';
+        this.form.isLegal = this.isLegal;
+        this.form.cnpj = '';
       }
     },
 	submit() {
