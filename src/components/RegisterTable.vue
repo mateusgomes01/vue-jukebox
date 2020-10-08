@@ -1,10 +1,7 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>{{ employee }}</h2>
-  </div>
-
-  
+  <div class="registerTable">
+    <h2>{{ form.name }}</h2>
+  </div>  
 </template>
 
 <script>
@@ -12,6 +9,7 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String,
+    form: {}
   },
   data () {
     return {

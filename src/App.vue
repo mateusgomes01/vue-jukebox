@@ -35,9 +35,13 @@
 				</p>
 			</template>
 
-			<button @click.prevent="submit()">Save</button>
+			<button v-on:click="submitForm">Save</button>
         </form>
-    <RegisterTable msg="This will be the register table"/>
+    <RegisterTable
+		v-for="(form, index) in this.forms"
+		v-bind:key="index"
+		v-bind:form="form"
+	></RegisterTable>
   </div>
 </template>
 
@@ -49,12 +53,12 @@ export default {
   data() {
     return {
 		form: {
-			name: '',
-			surname: '',
-			email: '',
+			name: 'Mateus',
+			surname: 'Melo',
+			email: 'mateus@mateus.xyz',
 			isLegal: false,
 			cnpj: '',
-			cpf: '',
+			cpf: '12312312323',
 		},
 		forms: [], // an array to store the forms
 		isLegal: false
@@ -74,21 +78,23 @@ export default {
       }
     }
   },
-  methods: {
-      showCNPJ() {
-        this.form.isLegal = this.isLegal;
-        this.form.cpf = '';
-      },
-      hideCNPJ() {
-        this.form.isLegal = this.isLegal;
-        this.form.cnpj = '';
-      }
-    },
-	submit() {
-		this.forms.push(this.form);
-		this.form = {};
+	methods: {
+		showCNPJ() {
+			this.form.isLegal = this.isLegal;
+			this.form.cpf = '';
+		},
+		hideCNPJ() {
+			this.form.isLegal = this.isLegal;
+			this.form.cnpj = '';
+		},
+		submitForm: function(event) {
+			this.forms.push(this.form);
+			if (event) {
+				alert(event.target.tagName)
+			}
+			//this.form = {};
+		}
 	}
-
 }
 </script>
 
@@ -120,5 +126,4 @@ input {
 	align-items: right;
 	display: table-cell;
 }
-
 </style>
