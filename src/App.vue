@@ -35,13 +35,15 @@
 				</p>
 			</template>
 
-			<button v-on:click="submitForm">Save</button>
+			<button v-on:click="pushForm" type="button">Save</button>
         </form>
-    <RegisterTable
-		v-for="(form, index) in this.forms"
-		v-bind:key="index"
-		v-bind:form="form"
-	></RegisterTable>
+	<!--<template v-if="this.forms.length > 0">-->
+		<RegisterTable
+			v-for="(form, index) in this.forms"
+			v-bind:key="index"
+			v-bind:form="form"
+		></RegisterTable>
+	<!--</template>-->
   </div>
 </template>
 
@@ -87,12 +89,12 @@ export default {
 			this.form.isLegal = this.isLegal;
 			this.form.cnpj = '';
 		},
-		submitForm: function(event) {
+		pushForm: function(event) {
 			this.forms.push(this.form);
 			if (event) {
 				alert(event.target.tagName)
 			}
-			//this.form = {};
+			this.form = {};
 		}
 	}
 }
